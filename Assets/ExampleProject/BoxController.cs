@@ -9,6 +9,7 @@ using Lexone.UnityTwitchChat;
 /// </summary>
 public class BoxController : MonoBehaviour
 {
+    public ThemeSprites themeSprites;
     public Transform ui;
     public Text nameText;
     public SpriteRenderer spriteRenderer;
@@ -27,6 +28,7 @@ public class BoxController : MonoBehaviour
         // If not "font-safe" then use login name instead, which should always be "font-safe"
         nameText.text = chatter.IsDisplayNameFontSafe() ? chatter.tags.displayName : chatter.login;
         nameText.color = chatter.GetNameColor();
+
 
         // Change box color to match chatter's primary badge
         if (chatter.HasBadge("broadcaster"))
@@ -81,5 +83,23 @@ public class BoxController : MonoBehaviour
             rb.AddForce(force, ForceMode2D.Impulse);
             rb.AddTorque(Random.Range(-1f, 1f), ForceMode2D.Impulse);
         }
+    }
+
+    private IEnumerator WanderLogic()
+    {
+
+
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(2f, 5f));
+
+          
+        }
+
+    }
+
+    private void TreatSpecialNames()
+    {
+
     }
 }
